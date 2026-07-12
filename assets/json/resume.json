@@ -1,108 +1,151 @@
 {
   "basics": {
     "name": "James Zhang",
-    "label": "",
+    "label": "Pre-Doctoral Research Fellow, Yale School of Management",
     "image": "",
-    "email": "james.yi.zhang@gmail.com",
-    "phone": "617-691-9580",
-    "url": "thejameszhang.github.io",
-    "location": {},
+    "email": "james.y.zhang@yale.edu",
+    "url": "https://thejameszhang.github.io",
+    "summary": "",
+    "location": {
+      "city": "New Haven",
+      "region": "Connecticut",
+      "countryCode": "US"
+    },
     "profiles": [
+      {
+        "network": "GitHub",
+        "username": "thejameszhang",
+        "url": "https://github.com/thejameszhang"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "jamesyzhang",
+        "url": "https://linkedin.com/in/jamesyzhang"
+      }
     ]
   },
   "work": [
     {
-      "name": "University of Maryland, College Park",
-      "position": "Teaching Assistant",
+      "name": "Yale School of Management",
+      "position": "Pre-Doctoral Research Fellow",
       "url": "",
-      "startDate": "2025-01",
+      "startDate": "2025-08",
       "endDate": "",
-      "summary": "TA for BUFN402 - Portfolio Manangement",
-      "highlights": []
+      "summary": "Advised by Bryan Kelly, Head of Machine Learning at AQR.",
+      "highlights": [
+        "Benchmarking whether frontier large language models replicate expert-level investor judgment, reading Dow Jones Newswires articles to classify the relevant global futures markets.",
+        "Building a dynamic macroeconomic knowledge graph from financial news to study Shiller's 'excess volatility' puzzle, linking the flow of macro information to asset prices.",
+        "Building 'Global Macroeconomic Data', a panel of returns for 92 global futures contracts (LSEG Tick History, LSEG Datastream, Compustat)."
+      ]
+    },
+    {
+      "name": "Kalshi — Independent Trading",
+      "position": "Proprietary Prediction Markets Trader",
+      "url": "",
+      "startDate": "2026-01",
+      "endDate": "",
+      "summary": "Automated market-making on Kalshi prediction markets, built in Rust.",
+      "highlights": [
+        "Deploying a market-making system across WTI crude oil, Bitcoin, and other commodity markets with real-time position tracking and risk controls.",
+        "Pricing, volatility modeling, and delta hedging from live CME Globex MDP 3.0 options data (Databento).",
+        "Quoting same-game parlays priced off FanDuel odds into live request-for-quote auctions across NBA, WNBA, MLB, and World Cup markets."
+      ]
+    },
+    {
+      "name": "Amazon",
+      "position": "Software Engineering Intern",
+      "url": "",
+      "startDate": "2025-06",
+      "endDate": "2025-08",
+      "summary": "",
+      "highlights": [
+        "Built real-time performance analytics in Java surfacing key metrics to over 2 million active Amazon Sellers.",
+        "Led a database migration from Elasticsearch to AWS Timestream, projected to cut costs 10% and user latency 5%.",
+        "Received a full-time return offer (Video Shopping Experiences team)."
+      ]
     },
     {
       "name": "University of Maryland, College Park",
-      "position": "Quantitative Researcher",
-      "url": "https://sites.google.com/site/serhiykozak/",
+      "position": "Research Assistant, Department of Finance",
+      "url": "",
       "startDate": "2024-01",
-      "endDate": "",
-      "summary": "Advised by Professor Serhiy Kozak",
-      "highlights": []
-    }, 
+      "endDate": "2025-05",
+      "summary": "Advised by Serhiy Kozak.",
+      "highlights": [
+        "Designed a class of latent three-dimensional 'Tensor Factor Models' capturing drivers of asset returns across time, lags, and the cross-section; implemented in Python on 96 monthly factor portfolios.",
+        "Implemented GPU-accelerated Orthogonalized Alternating Least Squares and PARAFAC algorithms in Jax for high-dimensional firm-characteristics data."
+      ]
+    },
     {
       "name": "Capital One",
       "position": "Software Engineering Intern",
-      "url": "https://www.capitalone.com/",
+      "url": "",
       "startDate": "2024-06",
       "endDate": "2024-08",
-      "summary": "Project creating an internal Python REST API on AWS Fargate handling operations on an Amazon RDS database",
-      "highlights": []
-    }, 
-    {
-      "name": "University of Maryland, College Park",
-      "position": "Teaching Assistant",
-      "url": "https://www.capitalone.com/",
-      "startDate": "2023-12",
-      "endDate": "2024-05",
-      "summary": "TA for BUFN403 - Computational Finance Capstone",
-      "highlights": []
-    }, 
+      "summary": "",
+      "highlights": [
+        "Built a FastAPI Slackbot for the Data Remediation team supporting internal data-lake workflows; improved query speeds 15%."
+      ]
+    },
     {
       "name": "Northrop Grumman",
       "position": "Software Engineering Intern",
-      "url": "https://www.northropgrumman.com/",
+      "url": "",
       "startDate": "2023-06",
       "endDate": "2023-08",
-      "summary": "Projects in atmospheric attenuation modeling and approximation theory",
-      "highlights": []
+      "summary": "",
+      "highlights": [
+        "Developed a time-varying atmospheric attenuation model with Chebyshev polynomials and approximation theory in PyTorch.",
+        "Built a platform to generate atmospheric attenuation reference tables using Pandas and the Modtran C++ API."
+      ]
     }
   ],
   "education": [
     {
+      "institution": "Yale University",
+      "location": "New Haven, Connecticut",
+      "url": "",
+      "area": "First-year PhD coursework: Financial Economics I, Econometrics I",
+      "studyType": "Visiting Graduate Student",
+      "startDate": "2025-09",
+      "endDate": "",
+      "score": "Honors",
+      "courses": []
+    },
+    {
       "institution": "University of Maryland, College Park",
       "location": "College Park, Maryland",
       "url": "https://www.cs.umd.edu/",
-      "area": "Computer Science, Mathematics, Computational Finance, 3.86 GPA. President of Smith Investment Fund Quant team.",
+      "area": "Computer Science & Mathematics; Minor in Computational Finance",
       "studyType": "Bachelor of Science",
       "startDate": "2022-08",
-      "endDate": "",
-      "score": "",
+      "endDate": "2025-05",
+      "score": "3.9/4.0",
       "courses": []
     }
   ],
-  "awards": [
-  ],
-  "certificates": [],
-  "publications": [],
   "skills": [
     {
-      "name": "Python",
-      "keywords": ["Jax", "Pandas", "Scikit-Learn", "PyTorch"]
+      "name": "Languages",
+      "keywords": ["Python", "Rust", "Java", "C++", "CUDA"]
     },
     {
-      "name": "Developer Tools",
-      "keywords": ["Unix", "Git", "Docker", "AWS"]
-    }, 
-    {
-      "name": "Languages",
-      "keywords": ["Python", "C++", "C", "CUDA", "Java", "OCaml"]
+      "name": "Libraries & Tools",
+      "keywords": ["PyTorch", "Jax", "Hugging Face", "vLLM", "NumPy", "Pandas", "Polars", "LaTeX"]
     }
-  ],
-  "languages": [
   ],
   "interests": [
-  ],
-  "references": [
     {
-      "name": "Professor Serhiy Kozak",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": ""
-    },
-    {
-      "name": "Professor Albert 'Pete' Kyle",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": ""
+      "name": "Research Interests",
+      "keywords": [
+        "Financial Machine Learning",
+        "Global Macro",
+        "Commodity Markets",
+        "Prediction Markets",
+        "Large Language Models",
+        "Market Microstructure",
+        "Random Matrix Theory"
+      ]
     }
-  ],
-  "projects": []
+  ]
 }

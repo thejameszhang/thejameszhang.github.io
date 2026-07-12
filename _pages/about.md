@@ -14,21 +14,22 @@ profile:
   #   # <p>Your City, State 12345</p>
 
 news: false # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}" (off: publications hidden, James Jul 2026)
 social: true # includes social icons at the bottom of the page
 ---
 
-<!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
+## Bio
 
-Hi! I'm James, and I'm an undergraduate student studying Computer Science, Mathematics, and Computational Finance at the University of Maryland, College Park. I work on financial machine learning, and this past summer, I was a Software Engineering Intern at Capital One. 
+I am a Pre-Doctoral Research Fellow at the [Yale School of Management](https://som.yale.edu/) and [Tobin Center for Economic Policy](https://tobin.yale.edu/), where I am fortunate to be advised by Professor [Bryan Kelly](https://som.yale.edu/faculty-research/faculty-directory/bryan-t-kelly). Prior to joining Yale, I received my B.S. in Computer Science and Mathematics from the [University of Maryland, College Park](https://www.umd.edu/), where I was advised by Professor [Serhiy Kozak](https://serhiykozak.com/).
 
-<!-- Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically. -->
+## Research
 
-My current research interests are theoretical and empirical asset pricing and market microstructure. Within asset pricing, I'm working on a latent "tensor factor model" that extends traditional PCA and incorporates a third dimension of lagged firm characteristics ie. pricing signals. Within microstructure, I'm interested in deep reinforcement learning algorithms to optimize trade execution.
+My research sits at the intersection of machine learning and financial markets.
+These days I work mostly on large language models and how well they understand
+the macroeconomy from financial news. Before that, at Maryland, I focused on empirical asset
+pricing: factor models, return prediction, and kernel methods. More broadly, I'm
+drawn to global macro, commodity markets, large language models, and random matrix theory.
 
-<!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+## Prediction Markets
 
-At UMD, I'm advised by Finance Prof. Serhiy Kozak. I'm also the President of the [Smith Investment Fund](https://www.smithinvestmentfund.com/quant-about), Teaching Assistant for BUFN402 - Portfolio Management under Prof. Seokwoo Lee, former Teaching Assistant for BUFN403 - Capstone Computational Finance Projects under Prof. Louiqa Raschid, and Ambassador of the Computational Finance Minor.
-
-*Note: Much of my research code is not publicly available per my mentor’s request, but please reach out via email to discuss anything.*
-
+Away from research, I like putting ideas to work in live markets. Right now that means prediction markets like Kalshi. I run a few high(er)-frequency market-making algorithms in Rust that trade WTI crude oil, Bitcoin, NBA and MLB games, and other markets. The applied side (pricing, risk, and the mess of real order flow) is where I have the most fun, and, so far at least, it's even made a little money. My code is private, but I'm always happy to chat about market making, prediction markets, or applied problems in finance and tech more broadly. If any of that overlaps with what you're working on, [reach out](mailto:james.y.zhang@yale.edu).
