@@ -83,9 +83,7 @@
       "startDate": "2024-06",
       "endDate": "2024-08",
       "summary": "",
-      "highlights": [
-        "Built a FastAPI Slackbot for the Data Remediation team supporting internal data-lake workflows; improved query speeds 15%."
-      ]
+      "highlights": ["Built a FastAPI Slackbot for the Data Remediation team supporting internal data-lake workflows; improved query speeds 15%."]
     },
     {
       "name": "Northrop Grumman",
