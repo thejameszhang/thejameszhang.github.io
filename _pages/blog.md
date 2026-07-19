@@ -1,11 +1,11 @@
 ---
 layout: default
 permalink: /blog/
-title: blog
+title: Blog
 nav: true
 nav_order: 1
 pagination:
-  enabled: true
+  enabled: false # all posts on one page so the topic filter works across the whole blog (Gundersen-style)
   collection: posts
   permalink: /page/:num/
   per_page: 5
@@ -15,6 +15,22 @@ pagination:
     before: 1 # The number of links before the current page
     after: 3 # The number of links after the current page
 ---
+
+<style>
+/* Blog: smaller, minimalistic header + tighter post list (matches the home page) */
+.header-bar { text-align: left; padding: 1.25rem 0 0.5rem; border-bottom: none; margin-bottom: 0; }
+.header-bar h1 { font-size: 2rem; margin-bottom: 0.15rem; }
+.header-bar h2 { font-size: 1.05rem; font-weight: 400; opacity: 0.7; margin-bottom: 0; }
+/* Topic filter row (Gundersen-style): click a topic to filter the list in place */
+.topic-filter { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; margin: 0.85rem 0 2.25rem; }
+.topic-filter a { font-size: 0.95rem; color: var(--global-text-color); opacity: 0.55; text-decoration: none; cursor: pointer; transition: opacity .15s ease, color .15s ease; }
+.topic-filter a:hover { opacity: 1; color: var(--global-theme-color); }
+.topic-filter a.active { opacity: 1; color: var(--global-theme-color); }
+.post-list { margin-top: 0.5rem; }
+.post-list .post-title { font-size: 1.3rem; font-weight: 400; }
+.post-list li { margin-bottom: 1.75rem; line-height: 1.6; }
+.post-list .post-meta { margin: 0; opacity: 0.7; font-size: 0.9rem; }
+</style>
 
 <div class="post">
 
@@ -31,29 +47,15 @@ pagination:
 
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
-  <div class="tag-category-list">
-    <ul class="p-0 m-0">
-      {% for tag in site.display_tags %}
-        <li>
-          <i class="fa-solid fa-hashtag fa-sm"></i> <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">{{ tag }}</a>
-        </li>
-        {% unless forloop.last %}
-          <p>&bull;</p>
-        {% endunless %}
-      {% endfor %}
-      {% if site.display_categories.size > 0 and site.display_tags.size > 0 %}
-        <p>&bull;</p>
-      {% endif %}
-      {% for category in site.display_categories %}
-        <li>
-          <i class="fa-solid fa-tag fa-sm"></i> <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
-        </li>
-        {% unless forloop.last %}
-          <p>&bull;</p>
-        {% endunless %}
-      {% endfor %}
-    </ul>
-  </div>
+  <nav class="topic-filter">
+    <a data-topic="__all__" class="active">All</a>
+    {% for tag in site.display_tags %}
+      <a data-topic="{{ tag | slugify }}">{{ tag }}</a>
+    {% endfor %}
+    {% for category in site.display_categories %}
+      <a data-topic="{{ category | slugify }}">{{ category }}</a>
+    {% endfor %}
+  </nav>
   {% endif %}
 
 {% assign featured_posts = site.posts | where: "featured", "true" %}
@@ -117,10 +119,11 @@ pagination:
       {% assign read_time = post.feed_content | strip_html | number_of_words | divided_by: 180 | plus: 1 %}
     {% endif %}
     {% assign year = post.date | date: "%Y" %}
-    {% assign tags = post.tags | join: "" %}
-    {% assign categories = post.categories | join: "" %}
+    {% assign topic_slugs = '' %}
+    {% for t in post.tags %}{% assign ts = t | slugify %}{% assign topic_slugs = topic_slugs | append: ts | append: ' ' %}{% endfor %}
+    {% for c in post.categories %}{% assign cs = c | slugify %}{% assign topic_slugs = topic_slugs | append: cs | append: ' ' %}{% endfor %}
 
-    <li>
+    <li data-tags="{{ topic_slugs | strip }}">
 
 {% if post.thumbnail %}
 
@@ -147,33 +150,6 @@ pagination:
         &nbsp; &middot; &nbsp; {{ post.external_source }}
         {% endif %}
       </p>
-      <p class="post-tags">
-        <a href="{{ year | prepend: '/blog/' | prepend: site.baseurl}}">
-          <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-
-          {% if tags != "" %}
-          &nbsp; &middot; &nbsp;
-            {% for tag in post.tags %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | prepend: site.baseurl}}">
-              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-              {% unless forloop.last %}
-                &nbsp;
-              {% endunless %}
-              {% endfor %}
-          {% endif %}
-
-          {% if categories != "" %}
-          &nbsp; &middot; &nbsp;
-            {% for category in post.categories %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | prepend: site.baseurl}}">
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>
-              {% unless forloop.last %}
-                &nbsp;
-              {% endunless %}
-              {% endfor %}
-          {% endif %}
-    </p>
-
 {% if post.thumbnail %}
 
 </div>
@@ -194,3 +170,29 @@ pagination:
 {% endif %}
 
 </div>
+
+<script>
+  (function () {
+    var controls = document.querySelectorAll('.topic-filter [data-topic]');
+    var posts = document.querySelectorAll('.post-list > li');
+    function apply(topic) {
+      controls.forEach(function (el) {
+        el.classList.toggle('active', el.dataset.topic === topic);
+      });
+      posts.forEach(function (li) {
+        var tags = (li.dataset.tags || '').split(/\s+/);
+        var show = topic === '__all__' || tags.indexOf(topic) !== -1;
+        li.style.display = show ? '' : 'none';
+      });
+    }
+    controls.forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var t = el.dataset.topic;
+        if (t !== '__all__' && el.classList.contains('active')) t = '__all__';
+        apply(t);
+      });
+    });
+    apply('__all__');
+  })();
+</script>
