@@ -77,5 +77,5 @@ Selected research code and datasets.
 
 <div style="display: flex; align-items: center; gap: 1rem; margin-top: 2rem;">
 <h2 id="cv" style="margin: 0;">CV</h2>
-<a class="cv-btn" href="{{ '/assets/pdf/james-zhang-resume.pdf' | relative_url }}" target="_blank" role="button"><i class="ti ti-download"></i> View my CV (PDF)</a>
+<a class="cv-btn" href="/assets/pdf/james-zhang-resume.pdf" target="_blank" role="button"><i class="ti ti-download"></i> View my CV (PDF)</a>
 </div>

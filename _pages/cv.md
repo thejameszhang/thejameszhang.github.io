@@ -12,9 +12,9 @@ nav_blank: true
      "CV" nav item and redirects any direct /cv/ visit to the resume PDF.
      (The original al-folio CV layout read _data/cv.yml; restore `layout: cv` if ever wanted.) -->
 
-<meta http-equiv="refresh" content="0; url={{ '/assets/pdf/james-zhang-resume.pdf' | relative_url }}" />
+<meta http-equiv="refresh" content="0; url=/assets/pdf/james-zhang-resume.pdf" />
 <script>
-  window.location.replace("{{ '/assets/pdf/james-zhang-resume.pdf' | relative_url }}");
+  window.location.replace("/assets/pdf/james-zhang-resume.pdf");
 </script>
 
-My CV is available as a [PDF]({{ '/assets/pdf/james-zhang-resume.pdf' | relative_url }}).
+My CV is available as a [PDF](/assets/pdf/james-zhang-resume.pdf).
