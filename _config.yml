@@ -305,7 +305,7 @@ jekyll-archives:
     tag: "/blog/tag/:name/"
     category: "/blog/category/:name/"
 
-display_tags: ["Finance"] # blog topics shown as the filter row; add a topic here once a post carries it (see interview/blog/Blog Roadmap.md)
+display_tags: ["Finance", "Probability & Statistics"] # blog topics shown as the filter row; add a topic here once a post carries it (see interview/blog/Blog Roadmap.md)
 display_categories: # ["external-services"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------

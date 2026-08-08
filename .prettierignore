@@ -8,5 +8,9 @@ assets/js/search/*.js
 assets/plotly/demo.html
 lighthouse_results/**
 _posts/2015-10-20-math.md
+# Math-heavy posts: Prettier's markdown parser is not LaTeX-aware and rewrites
+# underscore pairs as emphasis (\int_0^\infty -> \int*0^\infty), breaking MathJax.
+_posts/2026-08-02-concentration-inequalities.md
+_posts/2026-08-02-deriving-vix.md
 _sass/font-awesome/*.scss
 _sass/tabler-icons/*.scss

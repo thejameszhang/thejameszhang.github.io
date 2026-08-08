@@ -1,0 +1,176 @@
+---
+layout: post
+title: "Concentration Inequalities"
+date: 2026-08-02
+description: Many discuss Markov and Chebyshev inequalities as prerequisites for the Weak Law of Large Numbers. I derive them from first principles, provide some intuition, and explore more general concentration inequalities, such as Mills' inequality.
+tags: ["Probability & Statistics"]
+related_posts: false
+giscus_comments: false
+---
+
+When I first learned about concentration inequalities, it was my belief that Markov's inequality preceded Chebyshev's inequality because a standard proof of Chebyshev's uses Markov's. Upon digging deeper, I was surprised to find that Russian mathematician Andrey Markov formalized Markov's inequality in his 1884 doctoral thesis and his 1900 textbook at the St. Petersburg School of Probability, where he was advised by Pafnuty Chebyshev. Indeed, Chebyshev had formalized his own inequality in 1867, and Markov used his work to simplify Chebyshev's proof!
+
+Such inequalities provide bounds on tail probabilities of random variables in terms of their moments. With respect to the mean, in particular, another way of thinking about them is we want to show some random quantity is close to its mean with high probability.
+
+### Markov's Inequality
+
+I present two forms and proofs for Markov's inequality. The first is based on calculus and is more straightforward. Let $X \geq 0$ be any non-negative random variable. Note that $X$ can be discrete or continuous. The proof varies slightly, but the conclusion is the same. Then, for all $\epsilon > 0$,
+\begin{align}
+    \mathbb{P}(X \geq \epsilon) \leq \frac{\mathbb{E}[X]}{\epsilon}
+\end{align}
+I prove this when $X$ is continuous.
+\begin{equation} 
+\begin{aligned}
+     \mathbb{E}[X] &= \int_0^\infty x f_X(x) dx \\ \newline
+     &= \int_0^\epsilon x f_X(x) dx + \int_\epsilon^\infty x f_X(x) dx \newline 
+     &\geq \int_\epsilon^\infty x f_X(x) dx \newline 
+     &\geq \int_\epsilon^\infty \epsilon f_X(x) dx \newline 
+     &= \epsilon \int_\epsilon^\infty f_X(x) dx \newline 
+     &= \epsilon \mathbb{P}(X \geq \epsilon)
+\end{aligned}
+\end{equation}
+and we are done. The steps to the proof involve definition of expectation, non-negativity, splitting the integral, and the second inequality arrives because $x \geq \epsilon$. The proof for this form is simple, but it hides the intuition. 
+
+With a little bit of a measure-theoretic background, one can arrive at a marginally more expressive form, which is the following. 
+Let $X$ be *any* random variable. Then for all $\epsilon > 0$
+\begin{align}
+     \mathbb{P}(|X| \geq \epsilon) \leq \frac{\mathbb{E}|X|}{\epsilon}
+\end{align}
+The proof uses a small trick, which is that for any $x$, $|x| = |x| 1(|x| \geq \epsilon) + |x| 1(|x| < \epsilon)$. That is, where $1(|x| \geq \epsilon)$ is the indicator function that equals one when $|x| \geq \epsilon$ and otherwise zero.  
+\begin{equation}
+\begin{aligned}
+     \mathbb{E}|X| &= \mathbb{E}|X| 1(|X| \geq \epsilon) + \mathbb{E}|X| 1(|X| < \epsilon) \newline 
+     &\geq \mathbb{E}|X| 1(|X| \geq \epsilon) \newline 
+     &\geq \epsilon \mathbb{E} 1(|X| \geq \epsilon) \newline 
+     &= \epsilon \mathbb{P}(|X| \geq \epsilon)
+\end{aligned}
+\end{equation}
+where the last equality holds by the Lebesgue integral for simple functions. Importantly, Markov's inequality holds given a finite first moment, and we need not know anything about the second moment. That is, just given non-negativity and its expectation, we can bound its tail probability. It is not a particularly strong bound because of this simplicity, but it is a bound nonetheless.
+
+I like the second proof because it uncovers some geometric intuition underlying Markov's inequality. That is, let $g(x) = |x|$ and let $h(x) = \epsilon 1(|x| \geq \epsilon)$, and note that $h(x)$ is a step function. 
+Observe that for $x \geq 0$ and any $\epsilon \geq 0$
+<div class="row align-items-center my-4">
+  <div class="col-md-6 text-center">
+    <img src="/assets/img/posts/weak-law-of-large-numbers/markov_step_domination.png" alt="Geometric Proof of Markov's Inequality" class="img-fluid rounded z-depth-1">
+    <div class="caption">
+      Figure 1: Geometric proof showing $x \geq \epsilon \cdot \mathbf{1}(x \geq \epsilon)$ for $x \geq 0$.
+    </div>
+  </div>
+  <div class="col-md-6">
+\begin{equation}
+\begin{aligned}
+g(x) &\geq h(x) \newline 
+x &\geq \epsilon 1(x \geq \epsilon) \newline 
+\mathbb{E}[X] &\geq \epsilon \mathbb{E}[1(X \geq \epsilon)] \newline 
+\mathbb{E}[X] &\geq \epsilon \mathbb{P}(X \geq \epsilon) \newline 
+
+\newline 
+
+\implies \mathbb{P}(X \geq \epsilon) &\leq \frac{\mathbb{E}[X]}{\epsilon}
+\end{aligned}
+\end{equation}
+  </div>
+</div>
+In plain terms, this bound exists because the expectation (area under the curve) of the line $y=x$ is greater than the area under the step function for all $\epsilon > 0$. Note that the light blue areas, which I call the "slack areas," are unaccounted for, and it's a visual demonstration that Markov's inequality is quite loose as an approximation.
+
+### Chebyshev's Inequality
+
+If $X$ is a random variable with mean $\mu$ and variance $\sigma^2$ and $\epsilon \in (0, \infty)$  
+\begin{align}
+     \mathbb{P}\left( \left| \frac{X-\mu}{\sigma}\right| \geq \epsilon\right) \leq \frac{1}{\epsilon^2}
+\end{align}
+I am sure Chebyshev's proof to this was far more complicated before Markov simplified it. I present the simplified version for brevity. Applying Markov's,
+\begin{align}
+     \mathbb{P}\left( \left| \frac{X-\mu}{\sigma}\right| \geq \epsilon\right) = \mathbb{P}\left( \left( \frac{X-\mu}{\sigma}\right)^2 \geq \epsilon^2\right) \leq \frac{\mathbb{E}\left[ \left(\frac{X-\mu}{\sigma}\right)^2\right]}{\epsilon^2} = \frac{1}{\epsilon^2}
+\end{align}
+where the $1/\sigma^2$ is a constant and so can be pulled out of the expectation and the remaining term is the definition of variance, so those cancel out.
+
+<div class="my-4 text-center">
+  <img src="/assets/img/posts/weak-law-of-large-numbers/chebyshev_vs_markov_bounds.png" alt="Markov vs Chebyshev Bounds Comparison" class="img-fluid rounded z-depth-1" style="width: 85%;">
+  <div class="caption">
+    Figure 2: Comparison of Markov's $\mathcal{O}(1/\epsilon)$ ceiling bound vs. Chebyshev's $\mathcal{O}(1/\epsilon^2)$ bound for $\mathcal{N}(0, 1)$.
+  </div>
+</div>
+
+Note that without the non-negativity constraint, and given a finite second moment, Chebyshev's inequality is not only used to bound the probability that the random variable is far from its mean *in either direction*, but it generally also gives a better bound than Markov's inequality. Given higher-order moments, we should be able to approximate bounds on tail probabilities more accurately. Indeed, this higher-order behavior can be generalized. If $E|X|^r < \infty$ for $0 < r < \infty$, then by Markov's inequality, for any $\epsilon > 0$, then
+\begin{align}
+     \mathbb{P}(|X| > \epsilon) = \mathbb{P}(|X|^r > \epsilon^r) \leq \frac{E|X|^r}{\epsilon^r}
+\end{align}
+and thus, the more finite moments we know of, the faster the bound decays. For example, if $r=5$, then the bound drops at a rate of $\mathcal{O}(1/\epsilon^5)$. 
+
+Chebyshev's inequality can also be used to prove a version of the Weak Law of Large Numbers, which I now cover briefly. Let $X_1, \ldots, X_n$ be iid random variables with finite mean $\mu$, then $\mathbb{E}[\bar{X}_n] = \mu$. For any $\epsilon > 0$,
+\begin{align}
+     \mathbb{P}(|\bar{X}_n - \mu| > \epsilon) \to 0 \text{ as } n \to \infty
+\end{align}
+That is, as $n$ gets large, the sample mean approaches the population mean, and all we need is iid random variables and a finite first moment. For brevity, since WLLN is not the purpose of this post, I prove this under the assumption of a finite second moment. 
+\begin{equation}
+\begin{aligned}
+     \mathbb{P}(|\bar{X}_n - \mu| > \epsilon) &= \mathbb{P}(|\bar{X}_n - \mu| / (\sigma / \sqrt{n}) > \epsilon / (\sigma / \sqrt{n})) \newline 
+     &\leq \frac{\sigma^2}{n\epsilon^2} \to 0 \text{ as } n\to\infty
+\end{aligned}
+\end{equation}
+by Chebyshev's inequality, and we are done.
+
+### Mills' Inequality
+
+Markov's and Chebyshev's inequalities are usually grouped into a broader family known as **concentration inequalities**, which take the form 
+\begin{align}
+     \mathbb{P}(|f(X_1, \ldots, X_n) - u_n(f)| > \epsilon) < \delta_n
+\end{align}
+where $u_n(f) = \mathbb{E}[f(X_1, \ldots, X_n)]$ and $\delta_n \to 0$ as $n\to\infty$. Note that neither inequality is of this form as I stated it. Both bound the tail of a single random variable, and $n$ entered only when I applied Chebyshev's to $\bar{X}_n$ and used $\text{Var}(\bar{X}_n) = \sigma^2/n$.
+
+Mills' inequality is a tail bound of that same single-variable kind, so it is not a concentration inequality in the sense above either. I discuss it because it calibrates the two bounds I have already proven. Markov's uses one moment and Chebyshev's uses two, while Mills' uses the entire density. It answers a different question: if I know exactly what $Z$ is, how sharp can a tail bound be? The answer tells me how much Markov's and Chebyshev's gave up in exchange for their generality.
+
+Let $Z \sim \mathcal{N}(0, 1)$. Then for all $\epsilon > 0$, 
+\begin{align}
+     \mathbb{P}(|Z| > \epsilon) \leq \sqrt{\frac{2}{\pi}} \frac{e^{-\epsilon^2/2}}{\epsilon} \leq \frac{e^{-\epsilon^2/2}}{\epsilon} 
+\end{align}
+The proof needs the standard Gaussian density,
+\begin{align}
+     f_Z(x) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{x^2}{2}\right)
+\end{align}
+so that
+\begin{equation}
+\begin{aligned}
+     \mathbb{P}(|Z| > \epsilon) &= \frac{2}{\sqrt{2\pi}} \int_\epsilon^\infty \exp\left(-\frac{x^2}{2}\right) dx \newline 
+     &= \sqrt{\frac{2}{\pi}} \frac{1}{\epsilon} \int_\epsilon^\infty \epsilon \exp\left(-\frac{x^2}{2}\right) dx \newline 
+     &\leq \sqrt{\frac{2}{\pi}} \frac{1}{\epsilon} \int_\epsilon^\infty x \exp\left(-\frac{x^2}{2}\right) dx \newline 
+     &= \sqrt{\frac{2}{\pi}} \frac{1}{\epsilon} \int_{\epsilon^2/2}^\infty e^{-u} du \newline 
+     &= \sqrt{\frac{2}{\pi}} \frac{e^{-\epsilon^2/2}}{\epsilon}
+\end{aligned}
+\end{equation}
+and we are done. The factor of two in the first line is there because I am bounding $|Z|$ and not $Z$, and since the standard normal is symmetric about zero, the two tails contribute equally. The second line rewrites $2/\sqrt{2\pi}$ as $\sqrt{2/\pi}$ and then multiplies and divides by $\epsilon$, neither of which changes anything. The inequality in the third line is the only step that gives anything up, and it holds because the region of integration is $x \geq \epsilon$, so replacing $\epsilon$ with $x$ can only make the integrand larger. The fourth line substitutes $u = x^2/2$, so that $du = x \, dx$. The second, weaker bound in the statement follows because $\sqrt{2/\pi} \approx 0.798 < 1$.
+
+Mills' inequality is stated for a standard normal, which is less restrictive than it first appears. Linear combinations of Gaussians are Gaussian, so if $X_1, \ldots, X_n$ are iid $\mathcal{N}(\mu, \sigma^2)$, then $\bar{X}_n \sim \mathcal{N}(\mu, \sigma^2/n)$, and standardizing gives
+\begin{align}
+     Z := \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)
+\end{align}
+This is the same sample mean I bounded with Chebyshev's inequality above, so I can now bound it twice. Measuring the deviation in units of the standard error $\sigma/\sqrt{n}$,
+\begin{equation}
+\begin{aligned}
+     \mathbb{P}\left(|\bar{X}_n - \mu| > \frac{\epsilon \sigma}{\sqrt{n}}\right) &\leq \sqrt{\frac{2}{\pi}} \frac{e^{-\epsilon^2/2}}{\epsilon} \newline 
+     \mathbb{P}\left(|\bar{X}_n - \mu| > \frac{\epsilon \sigma}{\sqrt{n}}\right) &\leq \frac{1}{\epsilon^2}
+\end{aligned}
+\end{equation}
+where the second line is the Chebyshev bound from before, rewritten at this threshold.
+
+| $\epsilon$ | Chebyshev | Mills' | Exact |
+| :--- | :--- | :--- | :--- |
+| 3 | $1.11 \times 10^{-1}$ | $2.95 \times 10^{-3}$ | $2.70 \times 10^{-3}$ |
+| 4 | $6.25 \times 10^{-2}$ | $6.69 \times 10^{-5}$ | $6.33 \times 10^{-5}$ |
+| 5 | $4.00 \times 10^{-2}$ | $5.95 \times 10^{-7}$ | $5.73 \times 10^{-7}$ |
+{: .table}
+
+At three standard errors Chebyshev's bound is about forty times the true probability, and by five it is too large by a factor of roughly seventy thousand. Mills' bound is too large by about nine percent at $\epsilon = 3$ and by four percent at $\epsilon = 5$. The difference isn't that one proof or theorem is cleverer than the other. Chebyshev's inequality is handed a single number, the variance, and has to hold for every distribution with a finite variance. Mills' inequality is handed the entire density and applies only to a standard normal.
+
+That last point also means the comparison is rigged. Everything in this section used the fact that $Z$ is exactly normal. The proof integrates the Gaussian density directly, and the extension to $\bar{X}_n$ relied on Gaussians being closed under linear combinations. Neither survives without normality, and in practice we almost never know a distribution exactly. Wasserman puts the drawback plainly: Mills' inequality only applies to Gaussian random variables.
+
+This raises the question of whether the exponential rate can survive without normality. It can! Applying Markov's inequality to $e^{tX}$ instead of to $X$ gives the Chernoff bound, which needs only the moment generating function rather than the density, and bounded random variables have a moment generating function small enough to recover a bound of the same Gaussian shape, exponential in $\epsilon^2$. That result is Hoeffding's inequality. Unlike the comparison above, it holds for a large class of distributions, so setting it against Chebyshev's inequality is a fair fight rather than a rigged one, but I'll save that blog post for another day.
+
+### References
+
+- Andrews, D. W. K. *ECON 5550: Econometrics I Lecture 6 (Markov's Inequality)*, Yale University.
+- Andrews, D. W. K. *ECON 5550: Econometrics I Lecture 10 (Sample Theory, Weak Law of Large Numbers, Convergence in Probability, and Consistency)*, Yale University.
+- Casella, G., & Berger, R. L. *Statistical Inference* (Chapter 5).
+- Wasserman, L. *[STAT 700: Lecture Notes 5 (Exponential Concentration Inequalities)](https://www.stat.cmu.edu/~larry/=stat700/Lecture5.pdf)*, Carnegie Mellon University.
+- Wasserman, L. *[Concentration Inequalities](https://www.stat.cmu.edu/~larry/=sml/Concentration.pdf)*, Carnegie Mellon University.
