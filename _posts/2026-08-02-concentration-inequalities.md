@@ -39,21 +39,21 @@ Let $X$ be *any* random variable. Then for all $\epsilon > 0$
 The proof uses a small trick, which is that for any $x$, $|x| = |x| 1(|x| \geq \epsilon) + |x| 1(|x| < \epsilon)$. That is, where $1(|x| \geq \epsilon)$ is the indicator function that equals one when $|x| \geq \epsilon$ and otherwise zero.  
 \begin{equation}
 \begin{aligned}
-     \mathbb{E}|X| &= \mathbb{E}|X| 1(|X| \geq \epsilon) + \mathbb{E}|X| 1(|X| < \epsilon) \newline 
-     &\geq \mathbb{E}|X| 1(|X| \geq \epsilon) \newline 
-     &\geq \epsilon \mathbb{E} 1(|X| \geq \epsilon) \newline 
+     \mathbb{E}|X| &= \mathbb{E}\left[|X| 1(|X| \geq \epsilon)\right] + \mathbb{E}\left[|X| 1(|X| < \epsilon)\right] \newline 
+     &\geq \mathbb{E}\left[|X| 1(|X| \geq \epsilon)\right] \newline 
+     &\geq \epsilon \mathbb{E}\left[1(|X| \geq \epsilon)\right] \newline 
      &= \epsilon \mathbb{P}(|X| \geq \epsilon)
 \end{aligned}
 \end{equation}
 where the last equality holds by the Lebesgue integral for simple functions. Importantly, Markov's inequality holds given a finite first moment, and we need not know anything about the second moment. That is, just given non-negativity and its expectation, we can bound its tail probability. It is not a particularly strong bound because of this simplicity, but it is a bound nonetheless.
 
 I like the second proof because it uncovers some geometric intuition underlying Markov's inequality. That is, let $g(x) = |x|$ and let $h(x) = \epsilon 1(|x| \geq \epsilon)$, and note that $h(x)$ is a step function. 
-Observe that for $x \geq 0$ and any $\epsilon \geq 0$
+Observe that for $x \geq 0$ and any $\epsilon > 0$
 <div class="row align-items-center my-4">
   <div class="col-md-6 text-center">
     <img src="/assets/img/posts/weak-law-of-large-numbers/markov_step_domination.png" alt="Geometric Proof of Markov's Inequality" class="img-fluid rounded z-depth-1">
     <div class="caption">
-      Figure 1: Geometric proof showing $x \geq \epsilon \cdot \mathbf{1}(x \geq \epsilon)$ for $x \geq 0$.
+      Figure 1: Geometric proof showing $x \geq \epsilon \cdot 1(x \geq \epsilon)$ for $x \geq 0$.
     </div>
   </div>
   <div class="col-md-6">
@@ -92,9 +92,9 @@ where the $1/\sigma^2$ is a constant and so can be pulled out of the expectation
   </div>
 </div>
 
-Note that without the non-negativity constraint, and given a finite second moment, Chebyshev's inequality is not only used to bound the probability that the random variable is far from its mean *in either direction*, but it generally also gives a better bound than Markov's inequality. Given higher-order moments, we should be able to approximate bounds on tail probabilities more accurately. Indeed, this higher-order behavior can be generalized. If $E|X|^r < \infty$ for $0 < r < \infty$, then by Markov's inequality, for any $\epsilon > 0$, then
+Note that without the non-negativity constraint, and given a finite second moment, Chebyshev's inequality is not only used to bound the probability that the random variable is far from its mean *in either direction*, but it generally also gives a better bound than Markov's inequality. Given higher-order moments, we should be able to approximate bounds on tail probabilities more accurately. Indeed, this higher-order behavior can be generalized. If $\mathbb{E}|X|^r < \infty$ for $0 < r < \infty$, then by Markov's inequality, for any $\epsilon > 0$, then
 \begin{align}
-     \mathbb{P}(|X| > \epsilon) = \mathbb{P}(|X|^r > \epsilon^r) \leq \frac{E|X|^r}{\epsilon^r}
+     \mathbb{P}(|X| > \epsilon) = \mathbb{P}(|X|^r > \epsilon^r) \leq \frac{\mathbb{E}|X|^r}{\epsilon^r}
 \end{align}
 and thus, the more finite moments we know of, the faster the bound decays. For example, if $r=5$, then the bound drops at a rate of $\mathcal{O}(1/\epsilon^5)$. 
 
