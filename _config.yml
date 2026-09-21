@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: James
 middle_name: Yihan
 last_name: Zhang
-email: james.y.zhang@yale.edu
+email: james.yi.zhang@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -305,7 +305,7 @@ jekyll-archives:
     tag: "/blog/tag/:name/"
     category: "/blog/category/:name/"
 
-display_tags: ["Finance", "Probability & Statistics"] # blog topics shown as the filter row; add a topic here once a post carries it (see interview/blog/Blog Roadmap.md)
+display_tags: ["Finance", "Probability & Statistics", "Econometrics"] # blog topics shown as the filter row; add a topic here once a post carries it (see interview/blog/Blog Roadmap.md)
 display_categories: # ["external-services"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
