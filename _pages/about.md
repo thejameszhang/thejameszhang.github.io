@@ -65,7 +65,7 @@ Selected research code and datasets.
 
 - **Global Macroeconomic Data**<br>
   The macro counterpart to the [Global Factor Data](https://jkpfactors.com/) (Jensen, Kelly, and Pedersen 2023). It includes eight datasets of global futures returns using data from LSEG Tick History, LSEG Datastream, and Compustat. Joint work with [Bryan Kelly](https://www.bryankellyacademic.org/) and Faheem Almas.<br>
-  Documentation _(coming soon)_ · Data _(coming soon)_ · <a href="https://github.com/thejameszhang/futures" target="_blank" rel="noopener">Code</a>
+  Documentation _(coming soon)_ · Data _(coming soon)_
 
 - **Tensor Factor Models**<br>
   An Orthogonal PARAFAC tensor decomposition for latent three-dimensional factor models of returns across time, lags, and the cross-section, joint work with [Serhiy Kozak](https://serhiykozak.com/) and [Markus Pelger](https://mpelger.people.stanford.edu/). Estimation is cast as an alternating-optimization problem and solved with Alternating Least Squares and the Alternating Direction Method of Multipliers.<br>
